@@ -5,5 +5,5 @@ import com.example.clothstore.entity.Customer;
 import java.util.List;
 
 public interface CustomerService {
-    public List<Customer> getCustomers();
+    List<Customer> getCustomerByIdAndPassword(String id, String password);
 }

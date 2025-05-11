@@ -13,8 +13,9 @@ public class CustomerServiceImp implements CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
+
     @Override
-    public List<Customer> getCustomers() {
-        return customerRepository.findAll();
+    public List<Customer> getCustomerByIdAndPassword(String id, String password) {
+        return customerRepository.findCustomerByCustomerIdAndCustomerPassword(id, password);
     }
 }
