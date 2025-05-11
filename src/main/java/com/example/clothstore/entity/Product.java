@@ -2,8 +2,6 @@ package com.example.clothstore.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity(name = "product")
 public class Product {
     @Id
@@ -22,7 +20,7 @@ public class Product {
     private String productImage;
 
     @Column(name = "product_added_date")
-    private Date productAddedDate;
+    private String productAddedDate;
 
     @ManyToOne
     @JoinColumn(name = "product_type_id") // tên của cột trong database, không phải tên entity

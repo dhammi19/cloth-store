@@ -4,8 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import java.util.Date;
-
 @Entity(name = "size")
 public class Size {
     @Id
@@ -15,5 +13,5 @@ public class Size {
     private String sizeName;
 
     @Column(name = "size_added_date")
-    private Date sizeAddedDate;
+    private String sizeAddedDate;
 }
