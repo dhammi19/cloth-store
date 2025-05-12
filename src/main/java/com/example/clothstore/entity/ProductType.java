@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity(name = "product_type")
@@ -17,7 +18,7 @@ public class ProductType {
     private String productTypeName;
 
     @Column(name = "product_type_added_date")
-    private String productTypeAddedDate;
+    private Date productTypeAddedDate;
 
     @JsonIgnore
     @OneToMany(mappedBy = "productType") // tên của entity bên product class, không phải là tên cột trong database
@@ -39,11 +40,11 @@ public class ProductType {
         this.productTypeName = productTypeName;
     }
 
-    public String getProductTypeAddedDate() {
+    public Date getProductTypeAddedDate() {
         return productTypeAddedDate;
     }
 
-    public void setProductTypeAddedDate(String productTypeAddedDate) {
+    public void setProductTypeAddedDate(Date productTypeAddedDate) {
         this.productTypeAddedDate = productTypeAddedDate;
     }
 

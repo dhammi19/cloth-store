@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.util.Date;
+
 @Entity(name = "staff")
 public class Staff {
     @Id
@@ -13,7 +15,7 @@ public class Staff {
     private String staffName;
 
     @Column(name = "staff_birthday")
-    private String staffBirthday;
+    private Date staffBirthday;
 
     @Column(name = "staff_phone_number")
     private String staffPhoneNumber;
@@ -25,7 +27,7 @@ public class Staff {
     private String staffPassword;
 
     @Column(name = "staff_added_date")
-    private String staffAddedDate;
+    private Date staffAddedDate;
 
     public String getStaffId() {
         return staffId;
@@ -43,11 +45,11 @@ public class Staff {
         this.staffName = staffName;
     }
 
-    public String getStaffBirthday() {
+    public Date getStaffBirthday() {
         return staffBirthday;
     }
 
-    public void setStaffBirthday(String staffBirthday) {
+    public void setStaffBirthday(Date staffBirthday) {
         this.staffBirthday = staffBirthday;
     }
 
@@ -75,11 +77,11 @@ public class Staff {
         this.staffPassword = staffPassword;
     }
 
-    public String getStaffAddedDate() {
+    public Date getStaffAddedDate() {
         return staffAddedDate;
     }
 
-    public void setStaffAddedDate(String staffAddedDate) {
+    public void setStaffAddedDate(Date staffAddedDate) {
         this.staffAddedDate = staffAddedDate;
     }
 }

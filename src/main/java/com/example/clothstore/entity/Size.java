@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.util.Date;
+
 @Entity(name = "size")
 public class Size {
     @Id
@@ -13,7 +15,7 @@ public class Size {
     private String sizeName;
 
     @Column(name = "size_added_date")
-    private String sizeAddedDate;
+    private Date sizeAddedDate;
 
     public String getSizeId() {
         return sizeId;
@@ -31,11 +33,11 @@ public class Size {
         this.sizeName = sizeName;
     }
 
-    public String getSizeAddedDate() {
+    public Date getSizeAddedDate() {
         return sizeAddedDate;
     }
 
-    public void setSizeAddedDate(String sizeAddedDate) {
+    public void setSizeAddedDate(Date sizeAddedDate) {
         this.sizeAddedDate = sizeAddedDate;
     }
 }

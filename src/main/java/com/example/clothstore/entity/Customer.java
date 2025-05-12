@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.util.Date;
+
 @Entity(name = "customer")
 public class Customer {
     @Id
@@ -13,7 +15,7 @@ public class Customer {
     private String customerName;
 
     @Column(name = "customer_birthday")
-    private String customerBirthday;
+    private Date customerBirthday;
 
     @Column(name = "customer_phone_number")
     private String customerPhoneNumber;
@@ -25,7 +27,7 @@ public class Customer {
     private String customerPassword;
 
     @Column(name = "customer_added_date")
-    private String customerAddedDate;
+    private Date customerAddedDate;
 
     public String getCustomerId() {
         return customerId;
@@ -43,11 +45,11 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public String getCustomerBirthday() {
+    public Date getCustomerBirthday() {
         return customerBirthday;
     }
 
-    public void setCustomerBirthday(String customerBirthday) {
+    public void setCustomerBirthday(Date customerBirthday) {
         this.customerBirthday = customerBirthday;
     }
 
@@ -75,11 +77,11 @@ public class Customer {
         this.customerPassword = customerPassword;
     }
 
-    public String getCustomerAddedDate() {
+    public Date getCustomerAddedDate() {
         return customerAddedDate;
     }
 
-    public void setCustomerAddedDate(String customerAddedDate) {
+    public void setCustomerAddedDate(Date customerAddedDate) {
         this.customerAddedDate = customerAddedDate;
     }
 }
