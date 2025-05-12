@@ -26,4 +26,60 @@ public class Customer {
 
     @Column(name = "customer_added_date")
     private String customerAddedDate;
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerBirthday() {
+        return customerBirthday;
+    }
+
+    public void setCustomerBirthday(String customerBirthday) {
+        this.customerBirthday = customerBirthday;
+    }
+
+    public String getCustomerPhoneNumber() {
+        return customerPhoneNumber;
+    }
+
+    public void setCustomerPhoneNumber(String customerPhoneNumber) {
+        this.customerPhoneNumber = customerPhoneNumber;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
+    public String getCustomerPassword() {
+        return customerPassword;
+    }
+
+    public void setCustomerPassword(String customerPassword) {
+        this.customerPassword = customerPassword;
+    }
+
+    public String getCustomerAddedDate() {
+        return customerAddedDate;
+    }
+
+    public void setCustomerAddedDate(String customerAddedDate) {
+        this.customerAddedDate = customerAddedDate;
+    }
 }

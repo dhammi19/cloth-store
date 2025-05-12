@@ -22,4 +22,36 @@ public class ProductType {
     @JsonIgnore
     @OneToMany(mappedBy = "productType") // tên của entity bên product class, không phải là tên cột trong database
     Set<Product> products;
+
+    public String getProductTypeId() {
+        return productTypeId;
+    }
+
+    public void setProductTypeId(String productTypeId) {
+        this.productTypeId = productTypeId;
+    }
+
+    public String getProductTypeName() {
+        return productTypeName;
+    }
+
+    public void setProductTypeName(String productTypeName) {
+        this.productTypeName = productTypeName;
+    }
+
+    public String getProductTypeAddedDate() {
+        return productTypeAddedDate;
+    }
+
+    public void setProductTypeAddedDate(String productTypeAddedDate) {
+        this.productTypeAddedDate = productTypeAddedDate;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 }

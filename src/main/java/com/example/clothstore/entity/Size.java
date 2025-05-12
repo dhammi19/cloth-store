@@ -14,4 +14,28 @@ public class Size {
 
     @Column(name = "size_added_date")
     private String sizeAddedDate;
+
+    public String getSizeId() {
+        return sizeId;
+    }
+
+    public void setSizeId(String sizeId) {
+        this.sizeId = sizeId;
+    }
+
+    public String getSizeName() {
+        return sizeName;
+    }
+
+    public void setSizeName(String sizeName) {
+        this.sizeName = sizeName;
+    }
+
+    public String getSizeAddedDate() {
+        return sizeAddedDate;
+    }
+
+    public void setSizeAddedDate(String sizeAddedDate) {
+        this.sizeAddedDate = sizeAddedDate;
+    }
 }
