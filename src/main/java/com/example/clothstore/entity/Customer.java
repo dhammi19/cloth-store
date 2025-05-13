@@ -35,6 +35,10 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer")
+    private Set<Cart> carts;
+
     public String getCustomerId() {
         return customerId;
     }
@@ -97,5 +101,13 @@ public class Customer {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
     }
 }

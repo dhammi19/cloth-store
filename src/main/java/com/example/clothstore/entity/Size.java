@@ -22,6 +22,10 @@ public class Size {
     @OneToMany(mappedBy = "size")
     private Set<ProductSize> productSizes;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "size")
+    private Set<Cart> carts;
+
     public String getSizeId() {
         return sizeId;
     }
@@ -52,5 +56,13 @@ public class Size {
 
     public void setProductSizes(Set<ProductSize> productSizes) {
         this.productSizes = productSizes;
+    }
+
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
     }
 }
