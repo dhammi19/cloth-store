@@ -1,8 +1,10 @@
 package com.example.clothstore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity(name = "product")
 public class Product {
@@ -27,6 +29,10 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "product_type_id") // tên của cột trong database, không phải tên entity
     ProductType productType; // đây là tên entity đã được ProductType class mapping đến
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    Set<ProductSize> productSizes;
 
     public String getProductId() {
         return productId;
@@ -82,5 +88,13 @@ public class Product {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
+    }
+
+    public Set<ProductSize> getProductSizes() {
+        return productSizes;
+    }
+
+    public void setProductSizes(Set<ProductSize> productSizes) {
+        this.productSizes = productSizes;
     }
 }

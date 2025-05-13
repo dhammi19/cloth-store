@@ -1,10 +1,13 @@
 package com.example.clothstore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity(name = "size")
 public class Size {
@@ -16,6 +19,10 @@ public class Size {
 
     @Column(name = "size_added_date")
     private Date sizeAddedDate;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "size")
+    Set<ProductSize> productSizes;
 
     public String getSizeId() {
         return sizeId;
@@ -39,5 +46,13 @@ public class Size {
 
     public void setSizeAddedDate(Date sizeAddedDate) {
         this.sizeAddedDate = sizeAddedDate;
+    }
+
+    public Set<ProductSize> getProductSizes() {
+        return productSizes;
+    }
+
+    public void setProductSizes(Set<ProductSize> productSizes) {
+        this.productSizes = productSizes;
     }
 }
