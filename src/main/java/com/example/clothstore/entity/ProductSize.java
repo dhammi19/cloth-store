@@ -1,7 +1,10 @@
 package com.example.clothstore.entity;
 
 import com.example.clothstore.embedded.ProductSizeId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity(name = "product_size")
 public class ProductSize {
@@ -9,17 +12,21 @@ public class ProductSize {
     private ProductSizeId id;
 
     @ManyToOne
-    @MapsId("productId") // phải khớp tên field trong ProductSizeId
+    @MapsId("product") // phải khớp tên field trong ProductSizeId
     @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
-    @MapsId("sizeId") // phải khớp tên field trong ProductSizeId
+    @MapsId("size") // phải khớp tên field trong ProductSizeId
     @JoinColumn(name = "size_id")
     private Size size;
 
     @Column(name = "product_size_quantity")
     private int productSizeQuantity;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "productSize")
+    private Set<OrderProductSize> orderProductSizes;
 
     public ProductSizeId getId() {
         return id;
@@ -51,5 +58,13 @@ public class ProductSize {
 
     public void setProductSizeQuantity(int productSizeQuantity) {
         this.productSizeQuantity = productSizeQuantity;
+    }
+
+    public Set<OrderProductSize> getOrderProductSizes() {
+        return orderProductSizes;
+    }
+
+    public void setOrderProductSizes(Set<OrderProductSize> orderProductSizes) {
+        this.orderProductSizes = orderProductSizes;
     }
 }

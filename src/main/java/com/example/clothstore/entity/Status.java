@@ -18,7 +18,7 @@ public class Status {
 
     @JsonIgnore
     @OneToMany(mappedBy = "status")
-    Set<Order> orders;
+    private Set<Order> orders;
 
     public String getStatusId() {
         return statusId;

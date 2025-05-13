@@ -1,9 +1,11 @@
 package com.example.clothstore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity(name = "orders")
 public class Order {
@@ -25,15 +27,19 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "status_id")
-    Status status;
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    Customer customer;
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "staff_id")
-    Staff staff;
+    private Staff staff;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "order")
+    private Set<OrderProductSize> orderProductSizes;
 
     public String getOrderId() {
         return orderId;
@@ -97,5 +103,13 @@ public class Order {
 
     public void setStaff(Staff staff) {
         this.staff = staff;
+    }
+
+    public Set<OrderProductSize> getOrderProductSizes() {
+        return orderProductSizes;
+    }
+
+    public void setOrderProductSizes(Set<OrderProductSize> orderProductSizes) {
+        this.orderProductSizes = orderProductSizes;
     }
 }

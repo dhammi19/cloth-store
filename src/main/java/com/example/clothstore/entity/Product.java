@@ -30,11 +30,11 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "product_type_id") // tên của cột trong database, không phải tên entity
-    ProductType productType; // đây là tên entity đã được ProductType class mapping đến
+    private ProductType productType; // đây là tên entity đã được ProductType class mapping đến
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")
-    Set<ProductSize> productSizes;
+    private Set<ProductSize> productSizes;
 
     public String getProductId() {
         return productId;

@@ -20,7 +20,7 @@ public class ProductType {
 
     @JsonIgnore
     @OneToMany(mappedBy = "productType") // tên của entity bên product class, không phải là tên cột trong database
-    Set<Product> products;
+    private Set<Product> products;
 
     public String getProductTypeId() {
         return productTypeId;

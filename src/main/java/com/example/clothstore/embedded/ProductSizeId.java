@@ -17,6 +17,19 @@ public class ProductSizeId implements Serializable {
         this.sizeId = sizeId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProductSizeId)) return false;
+        ProductSizeId that = (ProductSizeId) o;
+        return Objects.equals(productId, that.productId) && Objects.equals(sizeId, that.sizeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, sizeId);
+    }
+
     public String getProductId() {
         return productId;
     }
@@ -31,18 +44,5 @@ public class ProductSizeId implements Serializable {
 
     public void setSizeId(String sizeId) {
         this.sizeId = sizeId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProductSizeId)) return false;
-        ProductSizeId that = (ProductSizeId) o;
-        return Objects.equals(productId, that.productId) && Objects.equals(sizeId, that.sizeId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, sizeId);
     }
 }

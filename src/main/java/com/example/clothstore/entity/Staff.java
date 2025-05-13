@@ -33,7 +33,7 @@ public class Staff {
 
     @JsonIgnore
     @OneToMany(mappedBy = "staff")
-    Set<Order> orders;
+    private Set<Order> orders;
 
     public String getStaffId() {
         return staffId;

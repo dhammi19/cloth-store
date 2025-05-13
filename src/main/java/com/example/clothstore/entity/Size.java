@@ -20,7 +20,7 @@ public class Size {
 
     @JsonIgnore
     @OneToMany(mappedBy = "size")
-    Set<ProductSize> productSizes;
+    private Set<ProductSize> productSizes;
 
     public String getSizeId() {
         return sizeId;
