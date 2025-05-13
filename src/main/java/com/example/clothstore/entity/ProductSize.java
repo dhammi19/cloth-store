@@ -12,12 +12,12 @@ public class ProductSize {
     private ProductSizeId id;
 
     @ManyToOne
-    @MapsId("product") // phải khớp tên field trong ProductSizeId
+    @MapsId("productId") // phải khớp tên field trong ProductSizeId
     @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
-    @MapsId("size") // phải khớp tên field trong ProductSizeId
+    @MapsId("sizeId") // phải khớp tên field trong ProductSizeId
     @JoinColumn(name = "size_id")
     private Size size;
 
