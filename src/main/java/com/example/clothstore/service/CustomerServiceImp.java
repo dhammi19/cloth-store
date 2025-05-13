@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class CustomerServiceImp implements CustomerService {
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     @Override
     public List<Customer> getCustomerByIdAndPassword(String id, String password) {

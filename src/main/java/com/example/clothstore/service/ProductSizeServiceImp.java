@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class ProductSizeServiceImp implements ProductSizeService {
     @Autowired
-    ProductSizeRepository productSizeRepository;
+    private ProductSizeRepository productSizeRepository;
 
     @Override
     public List<ProductSize> getProductSizesByProductId(String productId) {
