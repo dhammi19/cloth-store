@@ -3,14 +3,14 @@ package com.example.clothstore.embedded;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class OrdersProductSizeId implements Serializable {
+public class OrderProductSizeId implements Serializable {
     private String orderId;
     private String productId;
     private String sizeId;
 
-    public OrdersProductSizeId() {}
+    public OrderProductSizeId() {}
 
-    public OrdersProductSizeId(String orderId, String productId, String sizeId) {
+    public OrderProductSizeId(String orderId, String productId, String sizeId) {
         this.orderId = orderId;
         this.productId = productId;
         this.sizeId = sizeId;
@@ -19,7 +19,7 @@ public class OrdersProductSizeId implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof OrdersProductSizeId that)) return false;
+        if (!(o instanceof OrderProductSizeId that)) return false;
         return Objects.equals(orderId, that.orderId)
                 && Objects.equals(productId, that.productId)
                 && Objects.equals(sizeId, that.sizeId);

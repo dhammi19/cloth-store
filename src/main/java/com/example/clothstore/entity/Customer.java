@@ -39,6 +39,10 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private Set<Cart> carts;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer")
+    private Set<Feedback> feedbacks;
+
     public String getCustomerId() {
         return customerId;
     }
@@ -109,5 +113,13 @@ public class Customer {
 
     public void setCarts(Set<Cart> carts) {
         this.carts = carts;
+    }
+
+    public Set<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(Set<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 }

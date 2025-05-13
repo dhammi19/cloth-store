@@ -1,6 +1,6 @@
 package com.example.clothstore.entity;
 
-import com.example.clothstore.embedded.OrdersProductSizeId;
+import com.example.clothstore.embedded.OrderProductSizeId;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * khóa chính của entity đó bao gồm nhiều cột, và cấu trúc khóa này
  * được định nghĩa trong một class riêng biệt (ví dụ: OrdersProductSizeId).
  */
-@IdClass(OrdersProductSizeId.class)
+@IdClass(OrderProductSizeId.class)
 public class OrderProductSize {
     @Id
     @Column(name = "order_id")
