@@ -3,6 +3,7 @@ package com.example.clothstore.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,11 +19,12 @@ public class Product {
     private String productDescription;
 
     @Column(name = "product_price")
-    private double productPrice;
+    private BigDecimal productPrice;
 
     @Column(name = "product_image")
     private String productImage;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "product_added_date")
     private Date productAddedDate;
 
@@ -58,11 +60,11 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public double getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 

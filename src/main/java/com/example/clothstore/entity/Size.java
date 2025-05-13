@@ -1,10 +1,7 @@
 package com.example.clothstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.Set;
@@ -17,6 +14,7 @@ public class Size {
     @Column(name = "size_name")
     private String sizeName;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "size_added_date")
     private Date sizeAddedDate;
 

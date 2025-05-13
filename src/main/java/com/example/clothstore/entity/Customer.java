@@ -1,10 +1,10 @@
 package com.example.clothstore.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity(name = "customer")
 public class Customer {
@@ -14,6 +14,7 @@ public class Customer {
     @Column(name = "customer_name")
     private String customerName;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "customer_birthday")
     private Date customerBirthday;
 
@@ -26,8 +27,13 @@ public class Customer {
     @Column(name = "customer_password")
     private String customerPassword;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "customer_added_date")
     private Date customerAddedDate;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer")
+    Set<Order> orders;
 
     public String getCustomerId() {
         return customerId;
@@ -83,5 +89,13 @@ public class Customer {
 
     public void setCustomerAddedDate(Date customerAddedDate) {
         this.customerAddedDate = customerAddedDate;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }
