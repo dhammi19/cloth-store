@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/home-page")
+@RequestMapping("/home-page")
 public class HomePageController {
     @Autowired
     ProductService productService;
