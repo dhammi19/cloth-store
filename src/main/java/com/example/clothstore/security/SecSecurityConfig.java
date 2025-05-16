@@ -1,7 +1,10 @@
 package com.example.clothstore.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -18,19 +21,31 @@ public class SecSecurityConfig {
         Dùng để khởi tạo danh sách user cứng và danh sách user này sẽ được lưu
         trữ ở ram
     */
+//    @Bean
+//    public InMemoryUserDetailsManager userDetailService() {
+//        UserDetails user1 = User
+//                .withUsername("cybersoft")
+//                .password(passwordEncoder().encode("123"))
+//                .roles("USERS").build();
+//
+//        UserDetails user2 = User
+//                .withUsername("admin")
+//                .password(passwordEncoder().encode("admin123"))
+//                .roles("ADMIN").build();
+//
+//        return new InMemoryUserDetailsManager(user1, user2);
+//    }
+
+    @Autowired
+    CustomAuthenticationProvider customAuthenticationProvider;
+
     @Bean
-    public InMemoryUserDetailsManager userDetailService() {
-        UserDetails user1 = User
-                .withUsername("cybersoft")
-                .password(passwordEncoder().encode("123"))
-                .roles("USERS").build();
+    public AuthenticationManager authenticationManager(HttpSecurity httpSecurity) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder =
+                httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
 
-        UserDetails user2 = User
-                .withUsername("admin")
-                .password(passwordEncoder().encode("admin123"))
-                .roles("ADMIN").build();
-
-        return new InMemoryUserDetailsManager(user1, user2);
+        return authenticationManagerBuilder.build();
     }
 
     // Kiểu mã hóa dữ liệu
@@ -48,7 +63,7 @@ public class SecSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 );
         return http.build();
     }

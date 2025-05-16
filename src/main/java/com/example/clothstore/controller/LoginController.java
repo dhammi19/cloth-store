@@ -2,7 +2,7 @@ package com.example.clothstore.controller;
 
 
 import com.example.clothstore.entity.Customer;
-import com.example.clothstore.payload.ResponseData;
+import com.example.clothstore.payload.response.DataResponse;
 import com.example.clothstore.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +24,11 @@ public class LoginController {
             @RequestParam("password") String password) {
         List<Customer> customerList = customerService.getCustomerByIdAndPassword(id, password);
 
-        ResponseData responseData = new ResponseData();
-        responseData.setStatusCode(200);
-        responseData.setSuccess(customerList != null);
-        responseData.setData(customerList);
+        DataResponse dataResponse = new DataResponse();
+        dataResponse.setStatusCode(200);
+        dataResponse.setSuccess(customerList != null);
+        dataResponse.setData(customerList);
 
-        return responseData;
+        return dataResponse;
     }
 }

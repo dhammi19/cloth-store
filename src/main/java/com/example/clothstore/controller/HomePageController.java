@@ -2,7 +2,7 @@ package com.example.clothstore.controller;
 
 import com.example.clothstore.entity.Product;
 import com.example.clothstore.entity.ProductSize;
-import com.example.clothstore.payload.ResponseData;
+import com.example.clothstore.payload.response.DataResponse;
 import com.example.clothstore.service.ProductService;
 import com.example.clothstore.service.ProductSizeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class HomePageController {
     public Object showProducts() {
         List<Product> productList = productService.getProducts();
 
-        ResponseData responseData = new ResponseData();
-        responseData.setStatusCode(200);
-        responseData.setSuccess(productList != null);
-        responseData.setData(productList);
+        DataResponse dataResponse = new DataResponse();
+        dataResponse.setStatusCode(200);
+        dataResponse.setSuccess(productList != null);
+        dataResponse.setData(productList);
 
-        return responseData;
+        return dataResponse;
     }
 
     @PostMapping("/product-sizes")
@@ -36,11 +36,11 @@ public class HomePageController {
             @RequestParam("product-id") String productId) {
         List<ProductSize> productSizeList = productSizeService.getProductSizesByProductId(productId);
 
-        ResponseData responseData = new ResponseData();
-        responseData.setStatusCode(200);
-        responseData.setSuccess(productSizeService != null);
-        responseData.setData(productSizeList);
+        DataResponse dataResponse = new DataResponse();
+        dataResponse.setStatusCode(200);
+        dataResponse.setSuccess(productSizeService != null);
+        dataResponse.setData(productSizeList);
 
-        return responseData;
+        return dataResponse;
     }
 }

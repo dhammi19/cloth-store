@@ -1,8 +1,9 @@
-package com.example.clothstore.payload;
+package com.example.clothstore.payload.response;
 
-public class ResponseData {
+public class DataResponse {
     private int statusCode;
     private boolean isSuccess;
+    private String description;
     private Object data;
 
     public int getStatusCode() {
@@ -19,6 +20,14 @@ public class ResponseData {
 
     public void setSuccess(boolean success) {
         isSuccess = success;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Object getData() {
