@@ -39,31 +39,55 @@ public class SecSecurityConfig {
     @Autowired
     CustomAuthenticationProvider customAuthenticationProvider;
 
+    /*
+        - AuthenticationManager Là trung tâm xử lý xác thực người dùng trong Spring Security
+        với vai trò chính là Điều phối, gọi đến AuthenticationProvider để xác thực
+        - Tạo một AuthenticationManager đã được cấu hình với CustomAuthenticationProvider,
+        sau đó Spring có thể dùng nó để xác thực người dùng trong quá trình đăng nhập.
+    */
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity httpSecurity) throws Exception {
+        /*
+            - HttpSecurity là đối tượng cấu hình bảo mật HTTP (login, logout, quyền truy cập,
+            CSRF, v.v.)
+            - AuthenticationManagerBuilder là nơi bạn cấu hình cách xác thực người dùng
+            (qua database, bộ nhớ, custom provider...).
+            -
+        */
         AuthenticationManagerBuilder authenticationManagerBuilder =
                 httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+        /*
+            - Bạn đăng ký một AuthenticationProvider tùy chỉnh (trong trường hợp này là
+            CustomAuthenticationProvider) cho builder.
+            - Tức là: "khi xác thực, hãy dùng custom logic của tôi để kiểm tra
+            username và password".
+        */
         authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
 
+        /*
+            - Sau khi cấu hình xong, bạn dùng .build() để tạo ra một AuthenticationManager
+            thực sự.
+            - Spring sẽ dùng AuthenticationManager này trong controller hoặc bên trong
+            SecurityContext để xác thực người dùng.
+        */
         return authenticationManagerBuilder.build();
     }
 
-    // Kiểu mã hóa dữ liệu
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     /*
-        Quy định các rule liên quan tới bảo mật và quyền truy cập
+        - Quy định các rule liên quan tới bảo mật và quyền truy cập
     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/admin/sign-in").permitAll()
+                        .anyRequest().authenticated()
                 );
         return http.build();
     }

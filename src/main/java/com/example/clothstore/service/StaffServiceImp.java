@@ -17,7 +17,7 @@ public class StaffServiceImp implements StaffService {
         List<Staff> staffs = staffRepository.findByStaffIdAndStaffPassword(staffId, staffPassword);
 
         if (staffs.size() != 0) {
-            System.out.println("Kiểm tra size:"+staffs.size());
+            // System.out.println("Kiểm tra size:"+staffs.size());
             return true;
         } else {
             return false;
