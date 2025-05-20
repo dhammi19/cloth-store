@@ -23,4 +23,15 @@ public class StaffServiceImp implements StaffService {
             return false;
         }
     }
+
+    @Override
+    public Staff isLoggedIn(String staffId) {
+        List<Staff> staffs = staffRepository.findByStaffId(staffId);
+
+        if (staffs.size() != 0) {
+            return staffs.get(0);
+        } else {
+            return null;
+        }
+    }
 }

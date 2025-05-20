@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface StaffService {
     boolean isLoggedIn(String staffId, String staffPassword);
+    Staff isLoggedIn(String staffId);
 }

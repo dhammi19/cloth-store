@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface StaffRepository extends JpaRepository<Staff, String> {
     List<Staff> findByStaffIdAndStaffPassword(String staffId, String staffPassword);
+    List<Staff> findByStaffId(String staffId);
 } 

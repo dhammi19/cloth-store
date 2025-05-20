@@ -1,5 +1,6 @@
 package com.example.clothstore.controller;
 
+import com.example.clothstore.jwt.JwtTokenHelper;
 import com.example.clothstore.payload.request.SignInRequest;
 import com.example.clothstore.payload.response.DataResponse;
 import com.example.clothstore.service.StaffService;
@@ -25,6 +26,9 @@ public class AdminController {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtTokenHelper jwtTokenHelper;
 
     @GetMapping("")
     public String hello() {
@@ -58,18 +62,21 @@ public class AdminController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         securityContext.setAuthentication(auth);
 
-        //  Lưu SecurityContext vào HttpSession dưới key mặc định của Spring:
-        HttpSession session = request.getSession(true);
-        session.setAttribute(
-                HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
-                securityContext
-        );
+        String token = jwtTokenHelper.generateToken(signInRequest.getUsername());
+        String decodeToken = jwtTokenHelper.decodeToken(token);
+
+//        //  Lưu SecurityContext vào HttpSession dưới key mặc định của Spring:
+//        HttpSession session = request.getSession(true);
+//        session.setAttribute(
+//                HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+//                securityContext
+//        );
 
         DataResponse dataResponse = new DataResponse();
         dataResponse.setStatusCode(HttpStatus.OK.value());
-//        dataResponse.setSuccess(result);
-        dataResponse.setDescription("Sign in successfully");
-        dataResponse.setData("");
+        dataResponse.setSuccess(true);
+        dataResponse.setDescription(decodeToken);
+        dataResponse.setData(token);
 
         return new ResponseEntity<>(dataResponse, HttpStatus.OK);
 //        DataResponse dataResponse = new DataResponse();
