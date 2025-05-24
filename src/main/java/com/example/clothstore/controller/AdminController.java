@@ -3,6 +3,7 @@ package com.example.clothstore.controller;
 import com.example.clothstore.jwt.JwtTokenHelper;
 import com.example.clothstore.payload.request.SignInRequest;
 import com.example.clothstore.payload.response.DataResponse;
+import com.example.clothstore.payload.response.DataTokenResponse;
 import com.example.clothstore.service.StaffService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -30,10 +31,13 @@ public class AdminController {
     @Autowired
     JwtTokenHelper jwtTokenHelper;
 
+    private long expiredDate = 8 * 60 * 60 * 1000;
+    private long refreshExpiredDate = 80 * 60 * 60 * 1000;
+
     @GetMapping("")
     public String hello() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("Current user: " + auth.getName());
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        System.out.println("Current user: " + auth.getName());
         return "Hello you";
     }
 
@@ -62,8 +66,9 @@ public class AdminController {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         securityContext.setAuthentication(auth);
 
-        String token = jwtTokenHelper.generateToken(signInRequest.getUsername());
-        String decodeToken = jwtTokenHelper.decodeToken(token);
+        String token = jwtTokenHelper.generateToken(signInRequest.getUsername(),"authen", expiredDate);
+        String refreshToken = jwtTokenHelper.generateToken(signInRequest.getUsername(),"refresh", refreshExpiredDate);
+        // String decodeToken = jwtTokenHelper.decodeToken(token);
 
 //        //  Lưu SecurityContext vào HttpSession dưới key mặc định của Spring:
 //        HttpSession session = request.getSession(true);
@@ -72,26 +77,17 @@ public class AdminController {
 //                securityContext
 //        );
 
+        DataTokenResponse dataTokenResponse = new DataTokenResponse();
+        dataTokenResponse.setToken(token);
+        dataTokenResponse.setRefreshToken(refreshToken);
+
         DataResponse dataResponse = new DataResponse();
         dataResponse.setStatusCode(HttpStatus.OK.value());
         dataResponse.setSuccess(true);
-        dataResponse.setDescription(decodeToken);
-        dataResponse.setData(token);
+        dataResponse.setDescription("");
+        dataResponse.setData(dataTokenResponse);
 
         return new ResponseEntity<>(dataResponse, HttpStatus.OK);
-//        DataResponse dataResponse = new DataResponse();
-//
-//        boolean result = staffService.isLoggedIn(signInRequest.getUsername(), signInRequest.getPassword());
-//        dataResponse.setSuccess(result);
-//
-//        if (result) {
-//            dataResponse.setDescription("Sign in successfully");
-//            dataResponse.setStatusCode(HttpStatus.OK.value());
-//            return new ResponseEntity<>(dataResponse, HttpStatus.OK);
-//        } else {
-//            dataResponse.setDescription("Login failed");
-//            dataResponse.setStatusCode(HttpStatus.OK.value());
-//            return new ResponseEntity<>(dataResponse, HttpStatus.OK);
-//        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.clothstore.security;
 
+import com.example.clothstore.jwt.JwtTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -39,6 +41,9 @@ public class SecSecurityConfig {
 
     @Autowired
     CustomAuthenticationProvider customAuthenticationProvider;
+
+    @Autowired
+    JwtTokenFilter jwtTokenFilter;
 
     /*
         - AuthenticationManager Là trung tâm xử lý xác thực người dùng trong Spring Security
@@ -90,7 +95,14 @@ public class SecSecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/sign-in").permitAll()
+                        .requestMatchers("/refresh-token").permitAll()
                         .anyRequest().authenticated());
+
+        /*
+            - Thêm filter trước một filter nào đó
+        */
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 }
