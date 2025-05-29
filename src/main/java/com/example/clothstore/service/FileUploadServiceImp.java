@@ -43,7 +43,8 @@ public class FileUploadServiceImp implements FileUploadService {
     @Override
     public Resource loadFileByName(String fileName) {
         try {
-            Path path = this.rootPath.resolve(fileName).normalize();
+//            Path path = this.rootPath.resolve(fileName).normalize();
+            Path path = Paths.get("uploads/images").resolve(fileName).normalize();
 
             Resource resource = new UrlResource(path.toUri());
             if (resource.exists()) {

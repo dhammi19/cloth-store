@@ -94,6 +94,8 @@ public class SecSecurityConfig {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/home-page/*").permitAll()
+                        .requestMatchers("/file/**").permitAll()
                         .requestMatchers("/admin/sign-in").permitAll()
                         .requestMatchers("/refresh-token").permitAll()
                         .anyRequest().authenticated());
