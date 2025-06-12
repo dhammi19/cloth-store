@@ -28,7 +28,7 @@ public class HomePageController {
     ProductSizeService productSizeService;
 
     @GetMapping("/product-type")
-    public Object showProductType() {
+    public ResponseEntity<DataResponse> showProductType() {
         List<ProductType> productTypeList = productTypeService.getAll();
 
         DataResponse dataResponse = new DataResponse();
@@ -40,7 +40,7 @@ public class HomePageController {
     }
 
     @GetMapping("/products")
-    public Object showProducts() {
+    public ResponseEntity<DataResponse> showProducts() {
         List<Product> productList = productService.getProducts();
 
         DataResponse dataResponse = new DataResponse();
@@ -48,7 +48,7 @@ public class HomePageController {
         dataResponse.setSuccess(productList != null);
         dataResponse.setData(productList);
 
-        return dataResponse;
+        return new ResponseEntity<>(dataResponse, HttpStatus.OK);
     }
 
     @PostMapping("/product-sizes")
